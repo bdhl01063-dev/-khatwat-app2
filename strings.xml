@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">خطوتك</string>
+    <string name="brand_subtitle">مساعد المشاريع الصغيرة</string>
+    <string name="hero_badge">مجاني 100% · دون اشتراك أو إنترنت</string>
+    <string name="hero_title">حوّل مهاراتك وإمكانياتك البسيطة إلى مشروع عملي يبدأ اليوم</string>
+    <string name="hero_desc">أجب عن استبيان من 4 خطوات ليقترح لك محرك «خطوتك» المحلي 3 أفكار مشاريع واقعية بالريال اليمني (YER) مع خطة تنفيذ وتكاليف تقريبية وخطة تسويق.</string>
+    <string name="cta_start_wizard">ابدأ رحلتك الآن</string>
+    <string name="cta_saved_plans">خططي المحفوظة</string>
+    <string name="status_offline_ready">الوضع المحلي المجاني 100% — يعمل دون إنترنت</string>
+    <string name="financial_disclaimer">تنبيه استرشادي مهم: جميع التكاليف والعوائد الموضحة هي تقديرات تقريبية بالريال اليمني (YER) مبنية على مدخلاتك وطبيعة السوق، وليست أرباحاً مضمونة أو التزاماً مالياً. تختلف النتائج الفعلية باختلاف الأسعار المحلية، جودة التنفيذ، والطلب الفعلي.</string>
+</resources>

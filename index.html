@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0F1E36" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="خطوتك" />
+    <meta
+      name="description"
+      content="خطوتك — تطبيق ويب عربي مجاني يعمل دون إنترنت لمساعدة الشباب على تحويل مهاراتهم وميزانيتهم المحدودة بالريال اليمني إلى مشاريع عملية."
+    />
+    <title>خطوتك | من مهارتك إلى مشروعك الأول</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- Top Bar -->
+      <header class="topbar">
+        <button id="btn-brand-home" class="brand-btn" type="button" aria-label="العودة للرئيسية">
+          <img src="./favicon.svg" alt="شعار خطوتك" class="brand-logo" />
+          <div class="brand-title">
+            <span class="brand-name">خطوتك</span>
+            <span class="brand-sub">مساعد المشاريع الصغيرة</span>
+          </div>
+        </button>
+
+        <div class="topbar-actions">
+          <button id="btn-install-top" class="icon-pill-btn accent hidden" type="button">
+            <span>تثبيت</span>
+          </button>
+          <button id="btn-nav-saved" class="icon-pill-btn" type="button">
+            <span>خططي</span>
+            <span id="saved-count-badge" class="badge-count">0</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Connectivity & Free Mode Strip -->
+      <div class="status-strip" role="status" aria-live="polite">
+        <div>
+          <span id="status-dot" class="status-dot"></span>
+          <span id="status-text">الوضع المحلي المجاني 100% — يعمل دون إنترنت</span>
+        </div>
+        <span>YER · مجاني بالكامل</span>
+      </div>
+
+      <!-- Main Views -->
+      <main class="main-content">
+        <!-- 1. Landing View -->
+        <section id="view-landing" class="view-section">
+          <div class="hero-card">
+            <div class="hero-badge">مجاني 100% · دون اشتراك أو إنترنت</div>
+            <div class="hero-header-row">
+              <div class="hero-text">
+                <h1 class="hero-title">
+                  حوّل مهاراتك وإمكانياتك البسيطة إلى <span>مشروع عملي</span> يبدأ اليوم
+                </h1>
+                <p class="hero-desc">
+                  أجب عن استبيان سريع من 4 خطوات ليقترح لك محرك «خطوتك» المحلي 3 أفكار مشاريع واقعية
+                  بالريال اليمني (YER) مع خطة تنفيذ وتكاليف تقريبية وخطة تسويق قابلة للتطبيق.
+                </p>
+              </div>
+              <svg
+                class="hero-illustration"
+                viewBox="0 0 120 120"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <rect width="120" height="120" rx="28" fill="rgba(255,255,255,0.08)" />
+                <rect x="22" y="74" width="20" height="22" rx="6" fill="#F97316" />
+                <rect x="50" y="54" width="20" height="42" rx="6" fill="#FB923C" />
+                <rect x="78" y="34" width="20" height="62" rx="6" fill="#FFFFFF" />
+                <path
+                  d="M88 14L91 22L99 25L91 28L88 36L85 28L77 25L85 22L88 14Z"
+                  fill="#F97316"
+                />
+              </svg>
+            </div>
+
+            <div class="hero-actions">
+              <button id="btn-start-wizard" class="btn btn-primary" type="button">
+                ابدأ رحلتك الآن
+              </button>
+              <button id="btn-resume-draft" class="btn btn-ghost-light hidden" type="button">
+                متابعة المسودة السابقة
+              </button>
+              <button id="btn-open-saved" class="btn btn-ghost-light" type="button">
+                خططي المحفوظة
+              </button>
+            </div>
+          </div>
+
+          <!-- PWA Install Card -->
+          <div id="pwa-install-card" class="pwa-install-card">
+            <div>
+              <strong>ثبّت «خطوتك» على شاشة هاتفك (PWA)</strong>
+              <span>يعمل كتطبيق مستقل على Android وبدون إنترنت وبحجم خفيف جداً.</span>
+            </div>
+            <button id="btn-install-pwa" class="btn btn-navy" type="button">
+              تثبيت التطبيق
+            </button>
+          </div>
+
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="feature-icon">1</div>
+              <h3>تحليل محلي ذكي</h3>
+              <p>يقارن مهاراتك وأدواتك وميزانيتك بالريال اليمني دون إرسال بياناتك لأي جهة مدفوعة.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">2</div>
+              <h3>خطوات عملية</h3>
+              <p>تحصل على قائمة مهام مرقمة قابلة للتأشير وحفظ نسبة الإنجاز على جهازك.</p>
+            </article>
+            <article class="feature-card">
+              <div class="feature-icon">3</div>
+              <h3>شفافية مالية</h3>
+              <p>نطاقات تكلفة وعائد تقديرية واضحة بالـ YER دون وعود أرباح مضمونة أو وهمية.</p>
+            </article>
+          </div>
+        </section>
+
+        <!-- 2. Multi-Step Questionnaire Wizard View -->
+        <section id="view-wizard" class="view-section hidden">
+          <div class="card">
+            <div class="wizard-header">
+              <div class="wizard-step-meta">
+                <span id="wizard-step-label">الخطوة 1 من 4: المهارات والخبرات</span>
+                <span id="wizard-step-percent">25%</span>
+              </div>
+              <div class="progress-track" aria-hidden="true">
+                <div id="wizard-progress-fill" class="progress-fill" style="width: 25%"></div>
+              </div>
+            </div>
+
+            <!-- Step 1 -->
+            <div id="wizard-step-1" class="wizard-step-panel">
+              <h2 class="section-title">ما هي مهاراتك أو نقاط قوتك الحالية؟</h2>
+              <p class="section-subtitle">اختر مهارة واحدة أو أكثر (ويمكنك إضافة مهارات أخرى كتابةً).</p>
+              <div id="skills-chips" class="chips-wrap"></div>
+
+              <label class="field-label" for="input-custom-skill">إضافة مهارة غير موجودة في القائمة (اختياري)</label>
+              <div class="input-row">
+                <input
+                  id="input-custom-skill"
+                  class="text-input"
+                  type="text"
+                  placeholder="مثال: صيانة طاقة شمسية، تطريز، إدخال بيانات..."
+                />
+                <button id="btn-add-skill" class="btn btn-navy" type="button">إضافة</button>
+              </div>
+              <div id="custom-skills-tags" class="chips-wrap" style="margin-top: 8px"></div>
+
+              <label class="field-label">مستوى خبرتك في هذه المهارات</label>
+              <div id="experience-options" class="option-grid"></div>
+            </div>
+
+            <!-- Step 2 -->
+            <div id="wizard-step-2" class="wizard-step-panel hidden">
+              <h2 class="section-title">ما المجالات التي تهمك وتستمتع بالعمل فيها؟</h2>
+              <p class="section-subtitle">يساعدنا ذلك على ترشيح مشاريع تناسب شغفك وتستمر فيها.</p>
+              <div id="interests-chips" class="chips-wrap"></div>
+
+              <label class="field-label" for="input-passion-note">نبذة سريعة عن اهتمامك أو نوع الزبائن الذي تفضله (اختياري)</label>
+              <textarea
+                id="input-passion-note"
+                class="textarea-input"
+                placeholder="مثال: أحب العمل من المنزل في الحلويات أو التسويق للمتاجر عبر واتساب..."
+              ></textarea>
+            </div>
+
+            <!-- Step 3 -->
+            <div id="wizard-step-3" class="wizard-step-panel hidden">
+              <h2 class="section-title">ما ميزانيتك التقريبية بالريال اليمني ووقتك المتاح؟</h2>
+              <p class="section-subtitle">سنلتزم باقتراح أفكار تتوافق مع رأس المال الذي تحدده.</p>
+
+              <label class="field-label">رأس المال التأسيسي المتاح بالريال اليمني (YER)</label>
+              <div id="budget-options" class="option-grid"></div>
+
+              <label class="field-label" for="input-custom-budget">أو أدخل مبلغاً مخصصاً بالريال اليمني (اختياري)</label>
+              <input
+                id="input-custom-budget"
+                class="text-input"
+                type="number"
+                min="0"
+                step="1000"
+                inputmode="numeric"
+                placeholder="مثال: 35000"
+              />
+
+              <label class="field-label">الوقت المتاح أسبوعياً للمشروع</label>
+              <div id="hours-options" class="option-grid"></div>
+            </div>
+
+            <!-- Step 4 -->
+            <div id="wizard-step-4" class="wizard-step-panel hidden">
+              <h2 class="section-title">كيف تفضل العمل وما الأدوات المتوفرة لديك؟</h2>
+              <p class="section-subtitle">لتجنب اقتراح مشاريع تتطلب معدات أو تنقلاً غير متاح لك.</p>
+
+              <label class="field-label">تفضيل مكان وطبيعة العمل</label>
+              <div id="location-options" class="option-grid"></div>
+
+              <label class="field-label">الأدوات والإمكانيات المتوفرة لديك حالياً</label>
+              <div id="tools-chips" class="chips-wrap"></div>
+
+              <label class="field-label" for="input-city">المدينة أو المنطقة (اختياري — لتخصيص خطة التسويق)</label>
+              <input
+                id="input-city"
+                class="text-input"
+                type="text"
+                placeholder="مثال: صنعاء، عدن، تعز، المكلا..."
+              />
+
+              <details class="optional-ai-details" style="margin-top: 16px">
+                <summary>خيار إضافي مجاني: تعزيز الصياغة عبر Gemini (اختياري 100%)</summary>
+                <p style="font-size: 0.82rem; color: var(--text-secondary); margin: 8px 0">
+                  التطبيق يعمل بالكامل محلياً ودون إنترنت مجاناً. هذا الحقل اختياري تماماً فقط لمن
+                  يمتلك مفتاح Google AI Studio مجانياً ويرغب بتجربته عند توفر الإنترنت (لا يحتاج بطاقة بنكية).
+                </p>
+                <label class="chip-btn" style="margin-bottom: 8px">
+                  <input id="chk-use-gemini" type="checkbox" style="margin-left: 6px" />
+                  <span>محاولة التحسين عبر Gemini عند توفر الإنترنت والمفتاح</span>
+                </label>
+                <input
+                  id="input-gemini-key"
+                  class="text-input"
+                  type="password"
+                  autocomplete="off"
+                  placeholder="اتركه فارغاً للعمل المحلي التلقائي"
+                />
+              </details>
+            </div>
+
+            <div id="wizard-error-box" class="alert-box alert-danger hidden" style="margin-top: 14px"></div>
+
+            <div class="wizard-footer">
+              <button id="btn-wizard-prev" class="btn btn-secondary" type="button">السابق</button>
+              <button id="btn-wizard-next" class="btn btn-primary" type="button">التالي</button>
+              <button id="btn-wizard-submit" class="btn btn-primary hidden" type="button">
+                عرض 3 أفكار مناسبة لي
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. Analysis Loading View -->
+        <section id="view-loading" class="view-section hidden">
+          <div class="card" style="text-align: center; padding: 36px 20px">
+            <div style="font-size: 2.2rem; margin-bottom: 10px">⏳</div>
+            <h2 class="section-title">جاري تحليل مهاراتك وميزانيتك...</h2>
+            <p class="section-subtitle" id="loading-status-msg">
+              نقارن مدخلاتك الآن مع نماذج المشاريع العملية بالريال اليمني دون إرسال أي بيانات مدفوعة.
+            </p>
+          </div>
+        </section>
+
+        <!-- 4. Results Overview (3 Ideas) -->
+        <section id="view-results" class="view-section hidden">
+          <div class="results-header-card">
+            <div class="results-header-top">
+              <div>
+                <h2>أفضل 3 أفكار مشاريع تناسبك</h2>
+                <p id="results-profile-summary"></p>
+              </div>
+              <span id="results-source-pill" class="source-pill">المحرك المحلي المجاني</span>
+            </div>
+
+            <div class="toolbar-actions">
+              <button id="btn-revise-plan" class="btn btn-primary" type="button">
+                تعديل الخطة
+              </button>
+              <button id="btn-save-plan" class="btn btn-ghost-light" type="button">
+                حفظ في خططي
+              </button>
+              <button id="btn-new-analysis" class="btn btn-ghost-light" type="button">
+                استبيان جديد
+              </button>
+            </div>
+          </div>
+
+          <div id="results-fallback-notice" class="alert-box alert-info hidden"></div>
+
+          <div class="alert-box alert-warning">
+            <span>⚠️</span>
+            <span id="results-disclaimer-text"></span>
+          </div>
+
+          <div id="ideas-list" class="ideas-list"></div>
+        </section>
+
+        <!-- 5. Idea Detail View (Steps / Financials / Marketing) -->
+        <section id="view-detail" class="view-section hidden">
+          <div class="card">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 10px">
+              <button id="btn-detail-back" class="btn btn-secondary" type="button" style="min-height: 40px; padding: 6px 14px">
+                → العودة للأفكار الثلاث
+              </button>
+              <div style="display: flex; gap: 6px">
+                <button id="btn-detail-revise" class="btn btn-secondary" type="button" style="min-height: 40px; padding: 6px 12px">
+                  تعديل الخطة
+                </button>
+                <button id="btn-print-plan" class="btn btn-navy" type="button" style="min-height: 40px; padding: 6px 12px">
+                  طباعة / PDF
+                </button>
+              </div>
+            </div>
+
+            <span id="detail-mode-badge" class="idea-mode-badge"></span>
+            <h2 id="detail-title" class="section-title" style="margin-top: 8px"></h2>
+            <p id="detail-summary" class="section-subtitle"></p>
+
+            <div class="tabs-bar" role="tablist">
+              <button id="tab-btn-steps" class="tab-btn active" type="button" data-tab="steps">
+                خطة التنفيذ
+              </button>
+              <button id="tab-btn-financials" class="tab-btn" type="button" data-tab="financials">
+                التكاليف والعوائد
+              </button>
+              <button id="tab-btn-marketing" class="tab-btn" type="button" data-tab="marketing">
+                خطة التسويق
+              </button>
+            </div>
+          </div>
+
+          <!-- Tab: Steps -->
+          <div id="detail-tab-steps" class="card">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px">
+              <strong style="color: var(--navy-900)">تقدم التنفيذ الفعلي</strong>
+              <span id="detail-steps-progress-label" style="font-weight: 800; color: var(--orange-600)">0%</span>
+            </div>
+            <div class="progress-track" style="margin-bottom: 16px">
+              <div id="detail-steps-progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+            <div id="detail-steps-list" class="ideas-list"></div>
+          </div>
+
+          <!-- Tab: Financials -->
+          <div id="detail-tab-financials" class="card hidden">
+            <h3 style="margin: 0 0 12px; color: var(--navy-900)">التقديرات المالية بالريال اليمني (YER)</h3>
+            <div class="metrics-row" style="margin-bottom: 14px">
+              <div class="metric-tile">
+                <span>رأس المال التأسيسي التقديري</span>
+                <strong id="fin-startup-range"></strong>
+              </div>
+              <div class="metric-tile">
+                <span>العائد الشهري التقديري</span>
+                <strong id="fin-monthly-revenue"></strong>
+              </div>
+              <div class="metric-tile">
+                <span>المصاريف التشغيلية التقديرية</span>
+                <strong id="fin-monthly-expense"></strong>
+              </div>
+              <div class="metric-tile">
+                <span>فترة الاسترداد التقريبية</span>
+                <strong id="fin-break-even"></strong>
+              </div>
+            </div>
+            <h4 style="margin: 12px 0 8px; color: var(--navy-800)">تفصيل بنود التأسيس التقديرية</h4>
+            <div id="fin-items-list" class="cost-list" style="margin-bottom: 14px"></div>
+            <div class="alert-box alert-warning">
+              <span>⚠️</span>
+              <span id="fin-disclaimer"></span>
+            </div>
+          </div>
+
+          <!-- Tab: Marketing -->
+          <div id="detail-tab-marketing" class="card hidden">
+            <h3 style="margin: 0 0 12px; color: var(--navy-900)">خطة التسويق والانطلاق العملي</h3>
+            <div class="reasons-box" style="margin-bottom: 12px">
+              <h4>الجمهور المستهدف</h4>
+              <p id="mkt-audience" style="margin: 0; font-size: 0.9rem"></p>
+            </div>
+            <div class="reasons-box" style="margin-bottom: 12px">
+              <h4>أفضل القنوات منخفضة التكلفة</h4>
+              <ul id="mkt-channels" class="reasons-list"></ul>
+            </div>
+            <div class="alert-box alert-info" style="margin-bottom: 12px">
+              <span>🚀</span>
+              <div>
+                <strong>خطوة الأسبوع الأول:</strong>
+                <div id="mkt-first-week" style="margin-top: 4px"></div>
+              </div>
+            </div>
+            <div class="alert-box alert-success">
+              <span>💡</span>
+              <div>
+                <strong>نصيحة التسعير:</strong>
+                <div id="mkt-pricing-tip" style="margin-top: 4px"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. Saved Plans View -->
+        <section id="view-saved" class="view-section hidden">
+          <div class="card" style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
+            <div>
+              <h2 class="section-title" style="margin: 0">خططي المحفوظة محلياً</h2>
+              <p class="section-subtitle" style="margin: 4px 0 0">
+                محفوظة على جهازك وتعمل بالكامل دون إنترنت.
+              </p>
+            </div>
+            <button id="btn-saved-new" class="btn btn-primary" type="button">خطة جديدة</button>
+          </div>
+          <div id="saved-plans-list" class="ideas-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Revise Plan Modal -->
+    <div id="modal-revise" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-revise-title">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 id="modal-revise-title">تعديل الخطة وتخصيصها</h3>
+          <button id="btn-close-revise" class="close-btn" type="button" aria-label="إغلاق">×</button>
+        </div>
+
+        <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary)">
+          يمكنك تعديل إجابات الاستبيان مباشرة، أو كتابة توجيه سريع ليقوم المحرك بتحديث الأفكار الثلاث فوراً:
+        </p>
+
+        <div class="chips-wrap" id="revise-quick-chips">
+          <button class="chip-btn" type="button" data-note="أريد أفكاراً بتكلفة أقل أو بدون رأس مال">أقل تكلفة</button>
+          <button class="chip-btn" type="button" data-note="أفضل العمل عن بُعد بالكامل عبر الإنترنت">عن بُعد فقط</button>
+          <button class="chip-btn" type="button" data-note="أريد أفكاراً تناسب الهاتف فقط بدون لابتوب">بالهاتف فقط</button>
+          <button class="chip-btn" type="button" data-note="ركّز على العمل من المنزل والتسويق عبر واتساب">من المنزل + واتساب</button>
+        </div>
+
+        <textarea
+          id="input-revise-note"
+          class="textarea-input"
+          placeholder="اكتب ملاحظاتك هنا... مثال: ركّز على مشاريع نسائية من المنزل بميزانية أقل من 30 ألف ريال يمني"
+        ></textarea>
+
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <button id="btn-revise-apply" class="btn btn-primary btn-full" type="button">
+            تحديث الأفكار حسب ملاحظاتي
+          </button>
+          <button id="btn-revise-edit-answers" class="btn btn-secondary btn-full" type="button">
+            العودة وتعديل إجابات الاستبيان
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PWA Install Help Modal -->
+    <div id="modal-install-help" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-install-title">
+      <div class="modal-sheet">
+        <div class="modal-header">
+          <h3 id="modal-install-title">تثبيت تطبيق «خطوتك» على Android</h3>
+          <button id="btn-close-install-help" class="close-btn" type="button" aria-label="إغلاق">×</button>
+        </div>
+        <div class="alert-box alert-info">
+          <span>📱</span>
+          <div>
+            إذا لم تظهر نافذة التثبيت التلقائية، يمكنك تثبيت الموقع كتطبيق مستقل على شاشة هاتفك بسهولة:
+          </div>
+        </div>
+        <ol style="margin: 0; padding-right: 20px; font-size: 0.92rem; color: var(--navy-900)">
+          <li>افتح الموقع عبر متصفح <strong>Google Chrome</strong> على هاتف Android.</li>
+          <li>اضغط على قائمة النقاط الثلاث <strong>(⋮)</strong> في أعلى زاوية المتصفح.</li>
+          <li>اختر <strong>«تثبيت التطبيق»</strong> أو <strong>«إضافة إلى الشاشة الرئيسية»</strong>.</li>
+          <li>سيظهر شعار <strong>«خطوتك»</strong> بين تطبيقاتك ويعمل حتى بدون إنترنت.</li>
+        </ol>
+        <button id="btn-install-help-ok" class="btn btn-navy btn-full" type="button">فهمت، شكراً</button>
+      </div>
+    </div>
+
+    <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
